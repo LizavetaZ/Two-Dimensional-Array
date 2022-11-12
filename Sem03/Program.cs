@@ -18,7 +18,9 @@ if (IsInputValidate(row, colom, min, max))
         }
     }
     PrintOneRangeArray(OneRangeArray);
-    SortArray(OneRangeArray, 0);
+    SortArray(OneRangeArray);
+    Console.WriteLine();
+    PrintOneRangeArray(OneRangeArray);
     Console.WriteLine();
     int count = 1;
     int Value = OneRangeArray[0];
@@ -30,29 +32,30 @@ if (IsInputValidate(row, colom, min, max))
         }
         else
         {
-            Console.WriteLine($"Количество элементов {OneRangeArray[i - 1]} = {count}");
+            Console.WriteLine($"Количество элементов {Value} = {count}");
             count = 1;
             Value = OneRangeArray[i];
         }
+        
     }
     Console.WriteLine($"Количество элементов {Value} = {count}");
 }
 else Console.WriteLine("Ошибка вводимых данных");
 
-void SortArray(int[] arr, int k)
+void SortArray(int[] array)
 {
-    for ( k = 0; k < arr.Length - 1; k++)
+    for (int i = 0; i < array.Length; i++)
     {
-        if (arr[k] > arr[k + 1])
+        int min = array[i];
+        for (int j = i + 1; j < array.Length; j++)
         {
-            int temp = arr[k];
-            arr[k] = arr[k + 1];
-            arr[k + 1] = temp;
-            k++;
-        }
-        else
-        { 
-            k++; 
+            if (array[j] < min)
+            {
+                min = array[j];
+                int temp = array[i];
+                array[i] = min;
+                array[j] = temp;
+            }
         }
     }
 }
